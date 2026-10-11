@@ -1,13 +1,14 @@
 {
   "experiment_id": "experiment_tuned_k",
   "case_name": "Case2_Binary",
-  "fold_count": 5,
+  "fold_count": 6,
   "folds": [
     "fold_0.json",
     "fold_1.json",
     "fold_2.json",
     "fold_3.json",
-    "fold_4.json"
+    "fold_4.json",
+    "fold_5.json"
   ],
-  "updated_iso": "2026-10-11T07:53:05Z"
+  "updated_iso": "2026-10-11T07:53:23Z"
 }
