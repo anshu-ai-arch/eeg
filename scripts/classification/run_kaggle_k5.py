@@ -61,6 +61,42 @@ def setup_kaggle_args():
     return parser.parse_args()
 
 
+def numpy_json_serializer(obj):
+    """
+    Safely serialize NumPy scalar values and arrays to native Python types.
+    Raises TypeError for unsupported objects.
+    """
+    if isinstance(obj, np.integer):
+        return obj.item()
+    if isinstance(obj, np.floating):
+        return obj.item()
+    if isinstance(obj, np.bool_):
+        return obj.item()
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
+
+
+def save_json_atomic(data: dict, target_file: Path, indent: int = 2):
+    """
+    Atomically write data to target_file using a temporary file and os.replace
+    to prevent corrupt or partial JSON files if interrupted.
+    """
+    target_file = Path(target_file)
+    target_file.parent.mkdir(parents=True, exist_ok=True)
+    tmp_file = target_file.parent / f"{target_file.name}.tmp"
+    
+    try:
+        with open(tmp_file, "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=indent, default=numpy_json_serializer)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp_file, target_file)
+    finally:
+        if tmp_file.exists():
+            tmp_file.unlink(missing_ok=True)
+
+
 def load_and_validate_data(csv_path: Path) -> pd.DataFrame:
     print(f"Loading features from {csv_path}...")
     if not csv_path.exists():
@@ -146,8 +182,7 @@ def run_case(df: pd.DataFrame, case_name: str, label_col: str, output_dir: Path,
     }
     
     out_file = case_out_dir / f"{case_name}_results.json"
-    with open(out_file, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2)
+    save_json_atomic(results, out_file, indent=2)
         
     print(f"Completed {case_name}. Results saved to {out_file}")
 
