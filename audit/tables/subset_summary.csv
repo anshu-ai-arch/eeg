@@ -1,0 +1,6 @@
+subset,subject_group,condition,electrode_type,placement,total_recordings,sample_counts_observed,implied_duration_sec,parse_error_count,flatline_recordings,min_amplitude_overall,max_amplitude_overall,mean_mean_amplitude,mean_std_amplitude,mean_iqr_amplitude,mean_zero_proportion,files_with_adc_saturation,total_saturated_samples
+A,5 healthy volunteers,"Awake, relaxed, eyes open",Surface EEG (standard 10-20 international system),Scalp,100,[4097],23.5989,0,0,-288.0,294.0,-6.261,40.726,53.68,0.00874,0,0
+B,5 healthy volunteers,"Awake, relaxed, eyes closed",Surface EEG (standard 10-20 international system),Scalp,100,[4097],23.5989,0,0,-424.0,360.0,-12.513,61.099,80.92,0.0063,0,0
+C,5 epilepsy patients,Interictal (seizure-free intervals),Intracranial EEG (depth electrodes),"Hippocampal formation, opposite hemisphere to epileptogenic zone",100,[4097],23.5989,0,0,-412.0,623.0,-8.88,50.828,64.59,0.00842,0,0
+D,5 epilepsy patients,Interictal (seizure-free intervals),Intracranial EEG (depth & strip electrodes),Within the epileptogenic zone,100,[4097],23.5989,0,0,-1147.0,2047.0,-6.203,65.615,75.67,0.0082,1,52
+E,5 epilepsy patients,Ictal (during seizure activity),Intracranial EEG (depth & strip electrodes),Epileptogenic zone / seizure focus,100,[4097],23.5989,0,0,-1885.0,2047.0,-4.749,306.573,391.64,0.00177,2,20

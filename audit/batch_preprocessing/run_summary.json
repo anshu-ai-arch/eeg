@@ -1,0 +1,29 @@
+{
+  "status": "SUCCESS",
+  "start_time_iso": "2026-10-10T07:52:52.026913+00:00",
+  "end_time_iso": "2026-10-10T08:42:17.729092+00:00",
+  "elapsed_seconds": 2965.68,
+  "total_recordings_expected": 500,
+  "total_recordings_processed": 500,
+  "total_recordings_failed": 0,
+  "per_subset_counts": {
+    "A": 100,
+    "B": 100,
+    "C": 100,
+    "D": 100,
+    "E": 100
+  },
+  "ami_fallback_count": 0,
+  "fnn_non_converged_count": 0,
+  "peak_rss_mb": 834.42,
+  "software_versions": {
+    "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:11:29) [Clang 20.1.8 ]",
+    "numpy": "2.3.5"
+  },
+  "output_files": {
+    "features_csv": "/Users/anshutiwari123/phase_sync_eeg/audit/batch_preprocessing/bonn_features_96.csv",
+    "diagnostics_csv": "/Users/anshutiwari123/phase_sync_eeg/audit/batch_preprocessing/batch_diagnostics.csv",
+    "log_file": "/Users/anshutiwari123/phase_sync_eeg/audit/batch_preprocessing/batch_preprocessing.log",
+    "summary_json": "/Users/anshutiwari123/phase_sync_eeg/audit/batch_preprocessing/run_summary.json"
+  }
+}

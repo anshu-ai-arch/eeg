@@ -1,0 +1,89 @@
+{
+  "benchmark_case": "Case 1: A+B vs C+D vs E (3-class)",
+  "case_number": 1,
+  "timestamp_utc": "2026-10-10T11:44:36Z",
+  "frozen_feature_sha256": "af8d3d2f1c401e73fe2120bb823b370423b08cb02d55ce2432d3121813a9b9d1",
+  "n_samples": 500,
+  "n_features_total": 96,
+  "classes": {
+    "0": "healthy (A+B)",
+    "1": "interictal (C+D)",
+    "2": "ictal (E)"
+  },
+  "positive_class": null,
+  "protocol": {
+    "outer_splits": 10,
+    "inner_splits": 10,
+    "random_state": 42,
+    "candidate_k": [
+      5,
+      10,
+      15
+    ],
+    "candidate_c": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "candidate_gamma": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "mcfs_alpha": 0.01,
+    "mcfs_neighbors": 5,
+    "kernel": "rbf",
+    "decision_function_shape": "ovo"
+  },
+  "wall_clock_seconds": 321.18253462499706,
+  "peak_memory_mb": 9.431203842163086,
+  "pooled_metrics": {
+    "accuracy": 0.938,
+    "macro_precision": 0.9360895134344697,
+    "macro_recall": 0.93,
+    "macro_f1": 0.93289915856196,
+    "confusion_matrix": [
+      [
+        191,
+        7,
+        2
+      ],
+      [
+        6,
+        189,
+        5
+      ],
+      [
+        6,
+        5,
+        89
+      ]
+    ],
+    "labels": [
+      0,
+      1,
+      2
+    ]
+  },
+  "mean_fold_metrics": {
+    "mean_accuracy": 0.938,
+    "std_accuracy": 0.038418745424597084,
+    "mean_macro_precision": 0.9400639224323435,
+    "std_macro_precision": 0.04629600774373282,
+    "mean_macro_recall": 0.9299999999999999,
+    "std_macro_recall": 0.04333333333333335,
+    "mean_macro_f1": 0.9333314094738998,
+    "std_macro_f1": 0.04470430041007454
+  },
+  "outer_folds_failed": 0,
+  "undefined_metrics_count": 0,
+  "single_coverage_verified": true
+}

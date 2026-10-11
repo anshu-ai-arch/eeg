@@ -1,0 +1,90 @@
+{
+  "benchmark_case": "Case 2: A+B+C+D vs E (binary)",
+  "case_number": 2,
+  "timestamp_utc": "2026-10-10T11:49:03Z",
+  "frozen_feature_sha256": "af8d3d2f1c401e73fe2120bb823b370423b08cb02d55ce2432d3121813a9b9d1",
+  "n_samples": 500,
+  "n_features_total": 96,
+  "classes": {
+    "0": "non_ictal (A+B+C+D)",
+    "1": "ictal (E)"
+  },
+  "positive_class": "1",
+  "protocol": {
+    "outer_splits": 10,
+    "inner_splits": 10,
+    "random_state": 42,
+    "candidate_k": [
+      5,
+      10,
+      15
+    ],
+    "candidate_c": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "candidate_gamma": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "mcfs_alpha": 0.01,
+    "mcfs_neighbors": 5,
+    "kernel": "rbf",
+    "decision_function_shape": "ovo"
+  },
+  "wall_clock_seconds": 266.2475171670085,
+  "peak_memory_mb": 8.648710250854492,
+  "pooled_metrics": {
+    "accuracy": 0.968,
+    "macro_precision": 0.9716460723742277,
+    "macro_recall": 0.9275,
+    "macro_f1": 0.9475945917618698,
+    "confusion_matrix": [
+      [
+        398,
+        2
+      ],
+      [
+        14,
+        86
+      ]
+    ],
+    "labels": [
+      0,
+      1
+    ],
+    "sensitivity": 0.86,
+    "specificity": 0.995,
+    "tp": 86,
+    "tn": 398,
+    "fp": 2,
+    "fn": 14
+  },
+  "mean_fold_metrics": {
+    "mean_accuracy": 0.968,
+    "std_accuracy": 0.018330302779823376,
+    "mean_macro_precision": 0.9732683061880453,
+    "std_macro_precision": 0.020736041427735424,
+    "mean_macro_recall": 0.9275,
+    "std_macro_recall": 0.045,
+    "mean_macro_f1": 0.9465201077718769,
+    "std_macro_f1": 0.03151022335338004,
+    "mean_sensitivity": 0.8600000000000001,
+    "std_sensitivity": 0.09165151389911681,
+    "mean_specificity": 0.9949999999999999,
+    "std_specificity": 0.010000000000000009
+  },
+  "outer_folds_failed": 0,
+  "undefined_metrics_count": 0,
+  "single_coverage_verified": true
+}
