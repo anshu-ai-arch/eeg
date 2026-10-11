@@ -1,9 +1,10 @@
 {
   "experiment_id": "experiment_tuned_k",
   "case_name": "Case1_3Class",
-  "fold_count": 1,
+  "fold_count": 2,
   "folds": [
-    "fold_0.json"
+    "fold_0.json",
+    "fold_1.json"
   ],
-  "updated_iso": "2026-10-11T07:48:05Z"
+  "updated_iso": "2026-10-11T07:48:28Z"
 }
