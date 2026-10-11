@@ -1,0 +1,9 @@
+{
+  "experiment_id": "experiment_k5",
+  "case_name": "Case2_Binary",
+  "fold_count": 1,
+  "folds": [
+    "fold_0.json"
+  ],
+  "updated_iso": "2026-10-11T06:18:58Z"
+}
