@@ -1,14 +1,15 @@
 {
   "experiment_id": "experiment_k5",
   "case_name": "Case3_Pilot",
-  "fold_count": 6,
+  "fold_count": 7,
   "folds": [
     "fold_0.json",
     "fold_1.json",
     "fold_2.json",
     "fold_3.json",
     "fold_4.json",
-    "fold_5.json"
+    "fold_5.json",
+    "fold_6.json"
   ],
-  "updated_iso": "2026-10-11T06:21:10Z"
+  "updated_iso": "2026-10-11T06:21:16Z"
 }
