@@ -66,11 +66,52 @@ def test_quantize_grp_zero_maximum():
     assert np.all(q == 0)
 
 
+def test_quantize_grp_literal_k_mode():
+    grp = np.array([
+        [0.0, 5.0, 10.0],
+        [5.0, 0.0, 2.5],
+        [10.0, 2.5, 0.0]
+    ], dtype=np.float32)
+
+    K = 16
+    q = quantize_grp(grp, num_levels=K, mode="literal_k")
+    assert q.shape == (3, 3)
+    assert q.dtype == np.uint8
+    assert q.min() == 0
+    # In literal_k mode with multiplier K=16: max value 10.0 maps to round(10.0/10.0 * 16) = 16
+    assert q[0, 2] == 16
+    assert q.max() <= K
+
+
+def test_quantize_grp_non_finite_and_constant():
+    # Matrix with NaNs, Infs
+    grp = np.array([
+        [0.0, np.nan],
+        [np.inf, 10.0]
+    ], dtype=np.float32)
+    q = quantize_grp(grp, num_levels=16, mode="k_minus_1")
+    assert q.shape == (2, 2)
+    assert q.dtype == np.uint8
+    assert not np.isnan(q).any()
+
+    # Constant non-zero matrix
+    grp_const = np.full((4, 4), 5.0, dtype=np.float32)
+    q_const = quantize_grp(grp_const, num_levels=16, mode="k_minus_1")
+    assert q_const.shape == (4, 4)
+    assert np.all(q_const == 15)
+
+
+def test_quantize_grp_invalid_mode():
+    grp = np.eye(3, dtype=np.float32)
+    with pytest.raises(ValueError, match="Unsupported quantization mode"):
+        quantize_grp(grp, num_levels=16, mode="invalid_mode")
+
+
 def test_quantize_grp_discrete_levels():
     # Array with values spanning 0 to 15 uniformly
     vals = np.linspace(0.0, 100.0, 16, dtype=np.float32)
     grp_linear = np.outer(vals, np.ones(16, dtype=np.float32))
-    q = quantize_grp(grp_linear, num_levels=16)
+    q = quantize_grp(grp_linear, num_levels=16, mode="k_minus_1")
 
     assert q.dtype == np.uint8
     assert q.min() == 0
@@ -79,3 +120,4 @@ def test_quantize_grp_discrete_levels():
     unique_levels = np.unique(q)
     assert len(unique_levels) == 16
     assert np.array_equal(unique_levels, np.arange(16, dtype=np.uint8))
+

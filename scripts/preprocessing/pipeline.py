@@ -97,14 +97,23 @@ def preprocess_recording(
     grp_continuous = compute_grp(trajectory, metric=config.grp_metric)
 
     # Step 7: Quantize GRP to K gray levels
-    grp_quantized = quantize_grp(grp_continuous, num_levels=config.grp_num_levels)
+    grp_quantized = quantize_grp(
+        grp_continuous,
+        num_levels=config.grp_num_levels,
+        mode=config.grp_quantization_mode
+    )
+    glcm_num_levels = (
+        config.grp_num_levels
+        if config.grp_quantization_mode == "k_minus_1"
+        else config.grp_num_levels + 1
+    )
 
     # Step 8: Compute 8 GLCMs and extract 96 Haralick features
     features_dict, glcm_matrices = extract_all_glcm_features(
         grp_quantized,
         orientations=config.glcm_orientations,
         offsets=config.glcm_offsets,
-        num_levels=config.grp_num_levels + 1,
+        num_levels=glcm_num_levels,
         eps=config.log_epsilon
     )
 
@@ -143,6 +152,7 @@ def preprocess_recording(
         "grp_continuous_shape": grp_continuous.shape,
         "grp_continuous_min": float(grp_continuous.min()),
         "grp_continuous_max": float(grp_continuous.max()),
+        "grp_quantization_mode": config.grp_quantization_mode,
         "grp_quantized_shape": grp_quantized.shape,
         "grp_quantized_min": int(grp_quantized.min()),
         "grp_quantized_max": int(grp_quantized.max()),

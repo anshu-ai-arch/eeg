@@ -9,10 +9,16 @@ Implements the feature selection methodology cited and described in:
 
 Algorithm Steps:
 1. Construct a k-nearest-neighbor affinity graph W from training data X_train.
-   In the supervised setting (Lashkari et al., Section 3.6), class labels are utilized
-   to steer the selection: affinity edges between samples of different classes are zeroed out (W_ij = 0 if y_i != y_j).
+   In the supervised setting, class labels are utilized to steer selection: affinity edges
+   between samples of different classes are zeroed out (W_ij = 0 if y_i != y_j).
+   (Note: Cai et al. (2010) originally formulated unsupervised MCFS with Flat penalty or Heat kernel.
+   Supervising the graph is an adaptation for supervised classification, not explicitly detailed
+   with exact formulas in Lashkari et al. (2026)).
 2. Compute the degree matrix D and graph Laplacian L = D - W.
 3. Solve the generalized eigenvalue problem L y = lambda D y for the top non-trivial eigenvectors Y.
+   (Note: Zeroing inter-class edges disconnects the graph into C components, creating a C-dimensional
+   null space where lambda = 0. A deterministic QR orthogonalization is applied to extract an orthonormal
+   discriminant basis orthogonal to the trivial constant eigenvector v0).
 4. Fit sparse L1-regularized regressions (Lasso) of normalized features onto each eigenvector target.
 5. Compute spectral feature scores MCFS(j) = max_r |a_{r, j}|.
 6. Rank features in descending order of score and select the top-k feature indices.

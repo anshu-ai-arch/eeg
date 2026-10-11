@@ -35,9 +35,11 @@ class PreprocessingConfig:
     fnn_fallback_m: int = 5            # Fallback dimension if < 1% not reached by m=10
 
     # Generalized Recurrence Plot (GRP)
-    # Quantized to exactly K=16 levels (0..15) using round(RP / max(RP) * (K - 1))
+    # Default 'k_minus_1': Quantized to exactly K=16 levels (0..15) using round(RP / max(RP) * (K - 1))
+    # Optional 'literal_k': Quantized to K+1=17 levels (0..16) using round(RP / max(RP) * K) (Eq. 20)
     grp_metric: str = "euclidean"      # Distance metric for recurrence distance matrix
     grp_num_levels: int = 16           # Number of quantized gray levels K (produces K x K GLCMs)
+    grp_quantization_mode: str = "k_minus_1"  # 'k_minus_1' (0..K-1) or 'literal_k' (0..K)
 
     # Gray-Level Co-occurrence Matrix (GLCM) - Section 3.5 Ground Truth
     # Orientations: 0 and pi/4 (0° and 45°)

@@ -491,6 +491,7 @@ def run_nested_cross_validation(
             fold_callback(outer_fold_idx, fold_metrics[-1])
 
     total_runtime = time.perf_counter() - start_time
+    cumulative_fold_runtime = float(sum(m["runtime_seconds"] for m in fold_metrics))
 
     # Sort pooled outer predictions by global index
     outer_predictions_sorted = sorted(outer_predictions, key=lambda x: x["global_index"])
@@ -531,6 +532,7 @@ def run_nested_cross_validation(
         "mean_fold_metrics": mean_fold_metrics,
         "fold_splits": fold_splits,
         "total_runtime_seconds": total_runtime,
+        "cumulative_fold_runtime_seconds": cumulative_fold_runtime,
         "n_samples": n_samples,
         "n_features": n_features,
         "unique_classes": unique_classes,

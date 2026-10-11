@@ -175,9 +175,11 @@ def run_case(df: pd.DataFrame, case_name: str, label_col: str, output_dir: Path,
     
     results["metadata"] = {
         "case_name": case_name,
+        "experiment_id": "experiment_k5",
         "class_mapping": label_map,
         "pos_label_index": pos_label,
         "fixed_k": 5,
+        "candidate_k": [5],
         "execution_time_iso": datetime.now(timezone.utc).isoformat()
     }
     
